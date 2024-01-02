@@ -8,6 +8,4 @@ class Solution:
             else:
                 i=j
             j=j+1
-        return m            
-
-        
+        return m                       
