@@ -1,13 +1,16 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        h={")":"(","}":"{","]":"["}
-        l=[]
-        i=0
-        while i<len(s):
-            if s[i] not in h:
-                l.append(s[i])
-            elif s[i] in h:    
-                if len(l)==0 or h[s[i]]!=l.pop(-1):
-                    return False  
-            i=i+1          
-        return len(l)==0
+        paren = {')':'(',']':'[','}':'{'}
+        stack=[]
+        for i in range(0,len(s)):
+            if s[i]=='(' or s[i]=='[' or s[i]=='{':
+                stack.append(s[i])
+            elif len(stack)==0:
+                return False
+            elif s[i]==')' or s[i]==']' or s[i]=='}':
+                element = stack.pop()
+                if element != paren[s[i]]:
+                    return False
+        if stack:
+            return False
+        return True
